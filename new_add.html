@@ -1,0 +1,136 @@
+<?php
+include('session.php');
+?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+<style>
+/* Full-width input fields */
+* {	
+    background-color: #F7D358;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.header {
+	padding: 15px;
+    horizontal allignment: center;
+    border: 1px solid gray;
+    border-radius:6px;     
+    background-color: #FE642E;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,.submitbtn {
+    float: left;
+    width: 100%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+    margin-top: 2px;
+    border: 1px solid gray;
+    border-radius:6px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+
+.button1 {
+		  border-radius: 12px;
+
+</style>
+<body>
+
+<div class="header">
+  <form style="display: inline; background-color: #FE642E" name= "new_add_back" method="post" action="person_page.php">
+  <button class="button button1" style="font-size:12px"><i class="fa fa-angle-left"></i> BACK</button>
+  </form>
+  <form style="display: inline; background-color: #FE642E" name= "new_add_logout" method="post" action="main_page_login.php">
+  <button class="button button1" style="background-color: #ff0000; float: right;font-size:12px"><i class="fa fa-angle-left"></i> LOG OUT</button>
+  </form>
+  <h1 align="center" style="background-color: #FE642E">SHOPNOW MARKET</h1>
+</div>
+
+<h2 align="center">New Add</h2>
+
+<form name="new_add_form" method="post" action="new_add_insert.php" enctype="multipart/form-data" style="border:1px solid #ccc" enctype="multipart/form-data">
+  <div class="container">
+    
+    <label><b>Title</b></label>
+    <input style="background-color: #FAFAFA" type="text" placeholder="Enter Title" name="title" required>
+    <br>
+    <label><b>Description</b></label>
+    <input style="background-color: #FAFAFA" type="text" placeholder="Enter Description" name="description" required>
+    <br>
+  	<label><b>Image</b></label><br>
+	<img id="target" style="width:150px"/>
+    <input id="src" style="margin-top: 7px; margin-bottom: 7px;" type="file" name="image"><br>
+    <label style="margin-top: 7px;"><b>Category</b></label><br>
+    <select name= "category" style="margin-top: 7px; margin-bottom: 7px; background-color: #FAFAFA">
+  	<option style="background-color: #FAFAFA" value="sports">Sports</option>
+  	<option style="background-color: #FAFAFA" value="hobby">Hobby</option>
+  	<option style="background-color: #FAFAFA" value="clothes">Clothes</option>
+  	<option style="background-color: #FAFAFA" value="electronics">Electronics</option>
+	</select>
+	<br>
+    <label><b>Price</b></label><br>
+    <input name="price" style="margin-top: 7px;background-color: #FAFAFA" type="number" step="0.01" required>
+
+    <div class="clearfix">
+      <button type="submit" class="submitbtn">Submit</button>
+    </div>
+    
+  </div>
+</form>
+<script>
+function showImage(src,target) {
+  var fr=new FileReader();
+  // when image is loaded, set the src of the image where you want to display it
+  fr.onload = function(e) { target.src = this.result; };
+  src.addEventListener("change",function() {
+    // fill fr with image data    
+    fr.readAsDataURL(src.files[0]);
+  });
+}
+var src = document.getElementById("src");
+var target = document.getElementById("target");
+showImage(src,target);
+</script>
+</body>
+</html>
